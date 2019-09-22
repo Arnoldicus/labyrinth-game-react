@@ -60,11 +60,7 @@ function App(props) {
         <h3>Will you be able to back here...</h3>
       </header>
       <main>
-          {/* <div id="preview">
-              <Scene id="labyrinth-scene">
-                  <Player/>
-              </Scene>
-          </div> */}
+          {props.defaultSettings.canRenderVr && <Render3D/>}
 
           {!props.defaultSettings.vrView && <Editor/>}
           {props.defaultSettings.render2DView && <Render2D/>}
