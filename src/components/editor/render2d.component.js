@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import StartGame from '../startGame/startGame.component';
 
 function Render2D(props) {
-    let {selectedCol, render2DView, labyrinthArray} = props.defaultSettings;
+    let {selectedCol, render2DView, labyrinthArray, mapArray} = props.defaultSettings;
     const roundWalls = selectedCol + 2;
     const sumOfPaths = roundWalls * roundWalls;
     const placeWidth = roundWalls * (25 + 2);
@@ -98,7 +98,11 @@ function Render2D(props) {
                     });
                 }
             });
+            mapArray = [...Array(roundWalls).keys()].reduce((prev, curr) => {
+                return [...prev,  renderPathArray.slice(roundWalls * curr, roundWalls * curr + roundWalls)];
+            }, []);
             props.changeSetting('renderFinish', true);
+            props.changeSetting('mapArray', mapArray);
             props.changeSetting('labyrinthArray', renderLabyrinthArray);
             props.changeSetting('activePathArray', renderActivePathArray);
             props.changeSetting('availablePathsArray', renderAvailablePathsArray);
@@ -106,7 +110,6 @@ function Render2D(props) {
             props.changeSetting('disableIfSelected', renderDisableIfSelected);
             props.changeSetting('pathArray', renderPathArray);
         }
-        console.log('start selected', props.defaultSettings);
     }, []);
 
     for (let pathNumber = 0; pathNumber < sumOfPaths; pathNumber++) {
