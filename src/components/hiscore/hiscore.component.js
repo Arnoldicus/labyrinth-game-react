@@ -4,6 +4,8 @@ import * as _                           from 'lodash';
 import {connect}                        from 'react-redux';
 import {getRandomId}                    from '../../common/widgets';
 
+
+// class HiScore extends React.Component
 function HiScore(props) {
     const {time, loadMap, actualMapId} = props.defaultSettings;
     const [errorMsg, setErrorMsg] = useState('');
@@ -42,14 +44,13 @@ function HiScore(props) {
         }
     }
     return (
-        <div id="high-score-owner">
-            <h1> Congratulations!</h1>
+        <div className='congrat-container'>
+            <h1 className='congrat-text'> Congratulations!</h1>
             <div className="best-score">
-                <h2>Your best time:</h2>
-                <h3>{time.stringTime}</h3>
+                <h2 className="congrat-besttime">Your best time:</h2>
+                <h3 className="congrat-time">{time.stringTime}</h3>
             </div>
             <form>
-                <label>Your Name</label>
                 <input id="owner-name" name="owner-name" placeholder="Write your name" onChange={(e) => setOwner(e)}/>
                 {errorMsg !== '' && <div className="error-msg"><p>{errorMsg}</p></div>}
                 {!_.isEmpty(name) && <button id="save-owner" onClick={(e) => saveMap(e)}>Accept</button>}

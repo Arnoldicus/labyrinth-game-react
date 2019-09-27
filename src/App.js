@@ -16,15 +16,17 @@ function App(props) {
     }, [props.defaultSettings]);
     return (
         <>
+            {!props.defaultSettings.finish 
+            ? 
             <header className="heading">
                 <h1>Welcome to the Labyrinth Game Experience</h1>
                 <h3>Will you be able to back here...</h3>
-            </header>
+            </header> 
+            : null}
             <main>
                 {props.defaultSettings.canRenderVr && !props.defaultSettings.finish && <Render3D/>}
                 {!props.defaultSettings.vrView && !props.defaultSettings.finish && <Editor/>}
                 {props.defaultSettings.render2DView && !props.defaultSettings.finish && <Render2D/>}
-                {props.defaultSettings.finish && <HiScore/>}
                 {/* <HelpModal/> */}
                 {/*props.defaultSettings.vrView &&
                     <div className="preview">
@@ -33,6 +35,7 @@ function App(props) {
                 */}
                 <div id="loadedMaps" className="hidden"/>
             </main>
+            {props.defaultSettings.finish && <HiScore/>}
         </>
     );
 }
